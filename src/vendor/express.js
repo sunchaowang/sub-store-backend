@@ -9,7 +9,7 @@ export default function express({ substore: $, port }) {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'POST,GET,OPTIONS,PATCH,PUT,DELETE',
         'Access-Control-Allow-Headers':
-        'Origin, X-Requested-With, Content-Type, Accept, UUID_TOKEN',
+            'Origin, X-Requested-With, Content-Type, Accept, UUID_TOKEN',
     };
 
     // node support
@@ -54,7 +54,7 @@ export default function express({ substore: $, port }) {
     // dispatch url to route
     const dispatch = (request, start = 0) => {
         let { method, url, headers, body } = request;
-        console.log('dispatch ... request', request)
+        console.log('dispatch ... request', request);
         headers = formatHeaders(headers);
         if (/json/i.test(headers['content-type'])) {
             body = JSON.parse(body);

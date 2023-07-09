@@ -304,7 +304,7 @@ export function HTTP(defaultOptions = { baseURL: '' }) {
                   }, timeout);
               })
             : null;
- 
+
         return (
             timer
                 ? Promise.race([timer, worker]).then((res) => {

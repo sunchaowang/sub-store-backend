@@ -25,12 +25,12 @@ export default function register($app) {
 
 // subscriptions API
 async function getFlowInfo(req, res) {
-    console.log('req uuid .. ', req.headers['uuid_token'])
+    console.log('req uuid .. ', req.headers['uuid_token']);
     let { name } = req.params;
     name = decodeURIComponent(name);
     const allSubs = $.read(SUBS_KEY);
 
-    console.log('allSubs .. ', allSubs)
+    console.log('allSubs .. ', allSubs);
 
     const sub = findByName(allSubs, name);
     if (!sub) {
@@ -70,10 +70,10 @@ async function getFlowInfo(req, res) {
         }
 
         // unit is KB
-        const uploadMatch = flowHeaders.match(/upload=(-?)(\d+)/)
+        const uploadMatch = flowHeaders.match(/upload=(-?)(\d+)/);
         const upload = Number(uploadMatch[1] + uploadMatch[2]);
 
-        const downloadMatch = flowHeaders.match(/download=(-?)(\d+)/)
+        const downloadMatch = flowHeaders.match(/download=(-?)(\d+)/);
         const download = Number(downloadMatch[1] + downloadMatch[2]);
 
         const total = Number(flowHeaders.match(/total=(\d+)/)[1]);
@@ -205,8 +205,7 @@ function deleteSubscription(req, res) {
 }
 
 function getAllSubscriptions(req, res) {
-    console.log(req.headers['uuid_token'], 'uuid_token')
-    const allSubs = ($.read(SUBS_KEY) ?? []).filter(item => {
+    const allSubs = ($.read(SUBS_KEY) ?? []).filter((item) => {
         return item.uuid_token === req.headers['uuid_token'];
     });
     success(res, allSubs);

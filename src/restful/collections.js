@@ -31,6 +31,10 @@ function createCollection(req, res) {
             ),
         );
     }
+    const uuid_token = req.headers['uuid_token'];
+    if (uuid_token) {
+        collection.uuid_token = uuid_token;
+    }
     allCols.push(collection);
     $.write(allCols, COLLECTIONS_KEY);
     success(res, collection, 201);
@@ -39,7 +43,10 @@ function createCollection(req, res) {
 function getCollection(req, res) {
     let { name } = req.params;
     name = decodeURIComponent(name);
-    const allCols = $.read(COLLECTIONS_KEY);
+    const uuid_token = req.headers['uuid_token'];
+    const allCols = ($.read(COLLECTIONS_KEY) || []).filter((item) => {
+        return item.uuid_token === uuid_token;
+    });
     const collection = findByName(allCols, name);
     if (collection) {
         success(res, collection);
@@ -108,6 +115,9 @@ function deleteCollection(req, res) {
 }
 
 function getAllCollections(req, res) {
-    const allCols = $.read(COLLECTIONS_KEY);
+    const uuid_token = req.headers['uuid_token'];
+    const allCols = ($.read(COLLECTIONS_KEY)).filter((item) => {
+        return item.uuid_token === uuid_token;
+    });
     success(res, allCols);
 }
