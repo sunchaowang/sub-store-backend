@@ -116,7 +116,7 @@ function deleteCollection(req, res) {
 
 function getAllCollections(req, res) {
     const uuid_token = req.headers['uuid_token'];
-    const allCols = ($.read(COLLECTIONS_KEY)).filter((item) => {
+    const allCols = $.read(COLLECTIONS_KEY).filter((item) => {
         return item.uuid_token === uuid_token;
     });
     success(res, allCols);
