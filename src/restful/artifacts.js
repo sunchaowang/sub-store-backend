@@ -28,7 +28,9 @@ export default function register($app) {
 }
 
 function getAllArtifacts(req, res) {
-    const allArtifacts = $.read(ARTIFACTS_KEY);
+    const allArtifacts = ($.read(ARTIFACTS_KEY) ?? []).filter((item) => {
+        item.uuid = req.query.uuid;
+    });
     success(res, allArtifacts);
 }
 

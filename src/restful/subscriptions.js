@@ -25,7 +25,6 @@ export default function register($app) {
 
 // subscriptions API
 async function getFlowInfo(req, res) {
-    console.log('req uuid .. ', req.headers['uuid_token']);
     let { name } = req.params;
     name = decodeURIComponent(name);
     const allSubs = $.read(SUBS_KEY);
@@ -107,7 +106,6 @@ function createSubscription(req, res) {
             ),
         );
     }
-    sub.uuid_token = req.headers['uuid_token'];
     allSubs.push(sub);
     $.write(allSubs, SUBS_KEY);
     success(res, sub, 201);
@@ -206,7 +204,7 @@ function deleteSubscription(req, res) {
 
 function getAllSubscriptions(req, res) {
     const allSubs = ($.read(SUBS_KEY) ?? []).filter((item) => {
-        return item.uuid_token === req.headers['uuid_token'];
+        return item.uuid === req.query.uuid;
     });
     success(res, allSubs);
 }

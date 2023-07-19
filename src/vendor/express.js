@@ -26,7 +26,6 @@ export default function express({ substore: $, port }) {
             res.set(DEFAULT_HEADERS);
             next();
         });
-
         // adapter
         app.start = () => {
             app.listen(port, () => {
