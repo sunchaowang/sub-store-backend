@@ -8,8 +8,8 @@ import { InternalServerError, ResourceNotFoundError } from '@/restful/errors';
 import { produceArtifact } from '@/restful/sync';
 
 export default function register($app) {
-    $app.get('/download/collection/:name', downloadCollection);
-    $app.get('/download/:name', downloadSubscription);
+    $app.get('/api/download/collection/:name', downloadCollection);
+    $app.get('/api/download/:name', downloadSubscription);
 }
 
 async function downloadSubscription(req, res) {

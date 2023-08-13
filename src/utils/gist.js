@@ -28,7 +28,7 @@ export default class Gist {
     }
 
     async locate() {
-        return this.http.get('/gists').then((response) => {
+        return this.http.get('/api/gists').then((response) => {
             const gists = JSON.parse(response.body);
             for (let g of gists) {
                 if (g.description === this.key) {
