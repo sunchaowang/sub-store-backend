@@ -266,6 +266,7 @@ function Clash_All() {
                 'ss',
                 'ssr',
                 'vmess',
+                'vless',
                 'socks',
                 'http',
                 'snell',
